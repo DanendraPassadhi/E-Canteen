@@ -1,26 +1,26 @@
 <?php
-include 'connection.php';
+include 'db/database.php';
 
-$messages[] = ' ';
+$message = '';
 if (isset($_POST['tambah_menu'])) {
-    $nama_menu = mysqli_real_escape_string($conn, $_POST['nama_menu']);
-    $harga_menu = mysqli_real_escape_string($conn, $_POST['harga_menu']);
-    $gambar_menu = mysqli_real_escape_string($conn, $_FILES['gambar_menu']['name']);
-    $stok = mysqli_real_escape_string($conn, $_POST['stok']);
+    $nama_menu = htmlspecialchars($_POST['nama_menu']);
+    $harga_menu = htmlspecialchars($_POST['harga_menu']);
+    $gambar_menu = htmlspecialchars( $_FILES['gambar_menu']['name']);
+    $stok = htmlspecialchars( $_POST['stok']);
     $gambar_menu_tmp_name = $_FILES['gambar_menu']['tmp_name'];
     $gambar_menu_folder = 'uploaded_img/' . $gambar_menu;
 
     if (empty($nama_menu) || empty($harga_menu) || empty($gambar_menu) || empty($stok)) {
-        $messages[] = 'Mohon mengisi form inputan dengan benar';
+        $message = 'Mohon mengisi form inputan dengan benar';
     } else {
         $insert = "INSERT INTO menu(nama_menu, gambar_menu, harga, stok) VALUES('$nama_menu',  '$gambar_menu', '$harga_menu', '$stok')";
-        $upload = mysqli_query($conn, $insert);
+        $upload = sqlsrv_query($conn, $insert);
 
         if ($upload) {
             move_uploaded_file($gambar_menu_tmp_name, $gambar_menu_folder);
-            $messages[] = 'Menu berhasil ditambahkan';
+            $message = 'Menu berhasil ditambahkan';
         } else {
-            $messages[] = 'Tidak ada Menu yang ditambahkan';
+            $message = 'Tidak ada Menu yang ditambahkan';
         }
     }
 
@@ -28,7 +28,7 @@ if (isset($_POST['tambah_menu'])) {
 }
 if (isset($_GET['delete'])) {
     $id_menu = $_GET['delete'];
-    mysqli_query($conn, "DELETE FROM menu WHERE id_menu = $id_menu");
+    sqlsrv_query($conn, "DELETE FROM menu WHERE id_menu = $id_menu");
     header('location:canteen.php');
 }
 ?>
@@ -113,7 +113,7 @@ if (isset($_GET['delete'])) {
         <!-- Query menampilkan data pada tabel menu-->
         <?php
 
-        $select = mysqli_query($conn, "SELECT * FROM menu");
+        $select = sqlsrv_query($conn, "SELECT * FROM menu");
 
         ?>
         <!-- Tampilan Menu -->
@@ -128,18 +128,18 @@ if (isset($_GET['delete'])) {
                         <th>Aksi</th>
                     </tr>
                 </thead>
-                <?php while ($row = mysqli_fetch_assoc($select)) { ?>
+                <?php while ($row = sqlsrv_fetch_array($select, SQLSRV_FETCH_ASSOC)) { ?>
                     <tbody>
                         <tr>
                             <td><?php echo $row['nama_menu']; ?></td>
                             <td><img src="uploaded_img/<?php echo $row['gambar_menu']; ?>" height="100" alt=""></td>
                             <td>Rp. <?php echo $row['harga']; ?></td>
                             <td><?php echo $row['stok']; ?> pcs</td>
-                            <td <td>
+                            <td>
                                 <a href="update.php?edit=<?php echo $row['id_menu']; ?>" class="btn"><i
                                         class="fas fa-edit"></i>Edit</a>
                                 <a href="canteen.php?delete=<?php echo $row['id_menu']; ?>" class="btn"><i
-                                        class="fas fa-delete"></i>Delete</a>
+                                        ></i>Delete</a>
                             </td>
                         </tr>
                     <?php } ?>
@@ -155,13 +155,11 @@ if (isset($_GET['delete'])) {
                 <input type="text" placeholder="Masukkan nama menu" name="nama_menu" class="box">
                 <input type="text" placeholder="Masukkan harga menu" name="harga_menu" class="box">
                 <input type="text" placeholder="Masukkan Jumlah Stok" name="stok" class="box">
-                <input type="file" accept="image/png, image/jpg, image/jpeg" name="gambar_menu" class="box">
+                <input type="file" accept=".png, .jpg, .jpeg" name="gambar_menu" class="box">
                 <input type="submit" value="Tambahkan" name="tambah_menu" class="btn">
                 <?php
-                if (isset($messages)) {
-                    foreach ($messages as $message) {
+                if (isset($message)) {
                         echo '<span class="message">' . $message . '</span>';
-                    }
                 }
                 ?>
             </form>

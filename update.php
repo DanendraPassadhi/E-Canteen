@@ -1,29 +1,29 @@
 <?php
-include 'connection.php';
+include 'db/database.php';
 
 $id = $_GET['edit'];
 
-$messages[] = ' ';
+$message= '';
 if (isset($_POST['update_menu'])) {
-    $nama_menu = mysqli_real_escape_string($conn, $_POST['nama_menu']);
-    $harga_menu = mysqli_real_escape_string($conn, $_POST['harga_menu']);
-    $gambar_menu = mysqli_real_escape_string($conn, $_FILES['gambar_menu']['name']);
-    $stok = mysqli_real_escape_string($conn, $_POST['stok']);
+    $nama_menu = htmlspecialchars($_POST['nama_menu']);
+    $harga_menu = htmlspecialchars( $_POST['harga_menu']);
+    $gambar_menu = htmlspecialchars( $_FILES['gambar_menu']['name']);
+    $stok = htmlspecialchars( $_POST['stok']);
     $gambar_menu_tmp_name = $_FILES['gambar_menu']['tmp_name'];
     $gambar_menu_folder = 'uploaded_img/' . $gambar_menu;
 
     if (empty($nama_menu) || empty($harga_menu) || empty($gambar_menu) || empty($stok)) {
-        $messages[] = 'Mohon mengisi form inputan dengan benar';
+        $message = 'Mohon mengisi form inputan dengan benar';
     } else {
 
         $update = "UPDATE menu SET nama_menu ='$nama_menu', gambar_menu = '$gambar_menu', harga = '$harga_menu', stok = '$stok' WHERE id_menu = $id";
-        $upload = mysqli_query($conn, $update);
+        $upload = sqlsrv_query($conn, $update);
 
         if ($upload) {
             move_uploaded_file($gambar_menu_tmp_name, $gambar_menu_folder);
             header('location:canteen.php');
         } else {
-            $messages[] = 'Tidak ada Menu yang ditambahkan';
+            $message = 'Tidak ada Menu yang ditambahkan';
         }
     }
 
@@ -58,8 +58,8 @@ if (isset($_POST['update_menu'])) {
         <div class="container-form centered" style="margin-top:18rem;">
 
             <?php
-            $select = mysqli_query($conn, "SELECT * FROM menu WHERE id_menu = $id");
-            while ($row = mysqli_fetch_assoc($select)) {
+            $select = sqlsrv_query($conn, "SELECT * FROM menu WHERE id_menu = $id");
+            while ($row = sqlsrv_fetch_array($select, SQLSRV_FETCH_ASSOC)) {
                 ?>
 
                 <form action="<?php $_SERVER['PHP_SELF'] ?>" method="post" enctype="multipart/form-data">
@@ -74,10 +74,8 @@ if (isset($_POST['update_menu'])) {
                     <input type="submit" value="Perbarui" name="update_menu" class="btn">
                     <a href="canteen.php" class="btn black">Batalkan</a>
                     <?php
-                    if (isset($messages)) {
-                        foreach ($messages as $message) {
-                            echo '<span class="pesan">' . $message . '</span>';
-                        }
+                    if (isset($message)) {
+                            echo '<span class="message">' . $message . '</span>';
                     }
                     ?>
                 </form>
