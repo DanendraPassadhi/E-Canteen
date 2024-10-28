@@ -1,0 +1,182 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600&display=swap');
+
+:root{
+   --green:#27ae60;
+   --blue:#162157;
+   --gray:#CAD8DE;
+   --black:#333;
+   --white:#fff;
+   --bg-color:#F39237;
+   --box-shadow:0 .5rem 1rem rgba(0,0,0,.1);
+   --border:.1rem solid var(--bg-color);
+}
+
+*{
+   font-family: 'Poppins', sans-serif;
+   margin:0; padding:0;
+   box-sizing: border-box;
+   outline: none; border:none;
+   text-decoration: none;
+   text-transform: capitalize;
+}
+
+html{
+   font-size: 62.5%;
+   overflow-x: hidden;
+}
+
+
+.container{
+    max-width: 1200px;
+    padding:2rem;
+    margin:0 auto;
+}
+
+h1{
+    text-align: center;
+    color: var(--white);
+}
+
+
+.container-form form{
+   max-width: 50rem;
+   margin:0 auto;
+   padding:2rem;
+   border-radius: .5rem;
+   background: var(--bg-color);
+}
+
+.container-form form h2{
+   text-transform: uppercase;
+   color:var(--black);
+   margin-bottom: 1rem;
+   text-align: center;
+   font-size: 2.5rem;
+}
+
+.container-form form .box{
+   width: 100%;
+   border-radius: .5rem;
+   padding:1.2rem 1.5rem;
+   font-size: 1.7rem;
+   margin:1rem 0;
+   background: var(--white);
+   text-transform: none;
+}
+
+.tampilan-menu{
+   margin:2rem 0;
+   font-weight: bold;
+}
+
+.tampilan-menu .table-tampilan-menu{
+   width: 100%;
+   text-align: center;
+   border: var(--border);
+}
+
+.tampilan-menu .table-tampilan-menu thead{
+   background: var(--bg-color);
+}
+
+
+.tampilan-menu .table-tampilan-menu th{
+   color: var(--white);
+   padding:1rem;
+   font-size: 2rem;
+}
+
+
+
+.tampilan-menu .table-tampilan-menu td{
+   background: var(--white);
+   padding:1rem;
+   font-size: 2rem;
+   border: var(--border);
+}
+
+.tampilan-menu .table-tampilan-menu .btn:first-child{
+   margin-top: 0;
+}
+
+.tampilan-menu .table-tampilan-menu .btn:last-child{
+   background: crimson;
+}
+
+.tampilan-menu .table-tampilan-menu .btn:last-child:hover{
+   background: var(--black);
+}
+
+.btn{
+   display: block;
+   width: 100%;
+   cursor: pointer;
+   border-radius: .5rem;
+   margin-top: 1rem;
+   font-size: 1.7rem;
+   padding:1rem 3rem;
+   background: var(--green);
+   color:var(--white);
+   text-align: center;
+}
+
+.btn:hover{
+    background: var(--blue);
+}
+
+.btn.black{
+    color:var(--white);
+    background: var(--black);
+}
+
+.btn.black:hover{
+    color:var(--black);
+    background: var(--gray);
+    
+}
+
+
+.message{
+   display: block;
+   background: var(--bg-color);
+   padding:1.5rem 1rem;
+   font-size: 2rem;
+   color:var(--black);
+   margin-bottom: 2rem;
+   text-align: center;
+}
+
+
+
+
+
+
+
+
+@media (max-width:991px){
+
+   html{
+      font-size: 55%;
+   }
+
+}
+
+@media (max-width:768px){
+
+   .tampilan-menu{
+      overflow-y:scroll;
+   }
+
+   .tampilan-menu .table-tampilan-menu{
+      width: 80rem;
+   }
+
+}
+
+@media (max-width:450px){
+
+   html{
+      font-size: 50%;
+   }
+
+}
