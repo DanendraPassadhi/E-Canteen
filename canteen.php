@@ -77,8 +77,7 @@ if (isset($_GET['delete'])) {
             text-align: center;
             color: #fff;
             background-color: #F39237;
-            border-top-left-radius: 2rem;
-            border-top-right-radius: 2rem;
+            border-radius: 2rem;
         }
 
         .footer {
