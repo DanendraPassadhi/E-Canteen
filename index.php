@@ -73,11 +73,12 @@
         .sambutan .btn-masuk a {
             text-decoration: none;
             color: var(--white);
+            transition: 0.3s;
             
         }
 
         .sambutan .btn-masuk:hover {
-            background: var(--black);
+            background: var(--blue);
 
         }
     </style>

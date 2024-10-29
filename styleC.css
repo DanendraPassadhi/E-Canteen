@@ -2,6 +2,7 @@
 
 :root{
    --green:#27ae60;
+   --green-hover: #188445;
    --blue:#162157;
    --gray:#CAD8DE;
    --black:#333;
@@ -25,7 +26,6 @@ html{
    overflow-x: hidden;
 }
 
-
 .container{
     max-width: 1200px;
     padding:2rem;
@@ -37,7 +37,6 @@ h1{
     color: var(--white);
 }
 
-
 .container-form form{
    max-width: 50rem;
    margin:0 auto;
@@ -48,7 +47,7 @@ h1{
 
 .container-form form h2{
    text-transform: uppercase;
-   color:var(--black);
+   color: white;
    margin-bottom: 1rem;
    text-align: center;
    font-size: 2.5rem;
@@ -67,18 +66,23 @@ h1{
 .tampilan-menu{
    margin:2rem 0;
    font-weight: bold;
+   color: #F39237;
 }
 
 .tampilan-menu .table-tampilan-menu{
    width: 100%;
    text-align: center;
-   border: var(--border);
+   /* border: var(--border); */
+   border-collapse: collapse;
+   border-radius: 2rem;
+   overflow: hidden;
 }
 
 .tampilan-menu .table-tampilan-menu thead{
    background: var(--bg-color);
-}
+   border-radius: 2rem 2rem 0 0;
 
+}
 
 .tampilan-menu .table-tampilan-menu th{
    color: var(--white);
@@ -86,13 +90,22 @@ h1{
    font-size: 2rem;
 }
 
-
-
-.tampilan-menu .table-tampilan-menu td{
+.tampilan-menu .table-tampilan-menu tbody{
    background: var(--white);
    padding:1rem;
    font-size: 2rem;
-   border: var(--border);
+   transition: 0.3s;
+   border-radius: 0 0 2rem 2rem;
+}
+
+.tampilan-menu .table-tampilan-menu td{
+   padding:1rem;
+   font-size: 2rem;
+}
+
+.tampilan-menu .table-tampilan-menu tbody:hover {
+   background: #F39237;
+   color: white;
 }
 
 .tampilan-menu .table-tampilan-menu .btn:first-child{
@@ -101,10 +114,11 @@ h1{
 
 .tampilan-menu .table-tampilan-menu .btn:last-child{
    background: crimson;
+   transition: 0.3s;
 }
 
 .tampilan-menu .table-tampilan-menu .btn:last-child:hover{
-   background: var(--black);
+   background: rgb(155, 13, 42)
 }
 
 .btn{
@@ -118,10 +132,11 @@ h1{
    background: var(--green);
    color:var(--white);
    text-align: center;
+   transition: 0.3s;
 }
 
 .btn:hover{
-    background: var(--blue);
+    background: var(--green-hover);
 }
 
 .btn.black{
@@ -135,7 +150,6 @@ h1{
     
 }
 
-
 .message{
    display: block;
    background: var(--bg-color);
@@ -145,11 +159,6 @@ h1{
    margin-bottom: 2rem;
    text-align: center;
 }
-
-
-
-
-
 
 
 

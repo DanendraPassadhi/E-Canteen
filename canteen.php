@@ -44,7 +44,7 @@ if (isset($_GET['delete'])) {
     <link rel="icon" href="./img/icon.png">
     <style>
         body {
-            background-image: url(./img/background.png);
+            background-image: linear-gradient(rgba(255,255,255,0.2), rgba(255,255,255,0.2)), url(./img/background.png);
             background-attachment: fixed;
             background-size: 30%;    
         }
@@ -86,8 +86,14 @@ if (isset($_GET['delete'])) {
             height: 5rem;
             background: var(--bg-color);
             color: var(--white);
-            text-align: center;
-            font-size:1.4rem;
+            font-size:1.5rem;
+            display: flex;
+            justify-content: center;
+            align-item: center;
+        }
+
+        .footer p {
+            padding-top: 2rem;
         }
     </style>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -108,7 +114,7 @@ if (isset($_GET['delete'])) {
     <div class="container">
 
         <!-- Teks Sambutan -->
-        <h1 class="sambutan">HOLAA, LIHATLAH DAFTAR MENU PADA KANTIN JTI LANTAI 8 TERCINTA INI 🧑‍🍳</h1>
+        <h1 class="sambutan">DAFTAR MENU KANTIN JTI 🧑‍🍳</h1>
 
         <!-- Query menampilkan data pada tabel menu-->
         <?php
@@ -123,7 +129,7 @@ if (isset($_GET['delete'])) {
                     <tr>
                         <th>Nama Menu</th>
                         <th>Gambar Menu</th>
-                        <th>Harga Menu</th>
+                        <th>Harga</th>
                         <th>Stok</th>
                         <th>Aksi</th>
                     </tr>
@@ -167,7 +173,7 @@ if (isset($_GET['delete'])) {
     </div>
 
     <div class="footer">
-        <h3>&copy;Canteen JTI</h3>
+    <p>&copy; 2024 E-Canteen JTI. All rights reserved.</p>
     </div>
 
 
